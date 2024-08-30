@@ -1,4 +1,4 @@
-import { AbsoluteFill, staticFile, Video } from "remotion";
+import { AbsoluteFill, staticFile, Video, Img } from "remotion";
 import { z } from "zod";
 import { zColor } from "@remotion/zod-types";
 import { linearTiming, TransitionSeries } from "@remotion/transitions";
@@ -14,11 +14,11 @@ export const myCompSchema = z.object({
   logoColor2: zColor(),
 });
 
-const fontFamily = 'upheavett';
+const fontFamily = "upheavett";
 loadFont({
   family: fontFamily,
-  url: staticFile("upheavatt.ttf"),
-})
+  url: staticFile("upheavtt.ttf"),
+});
 
 export const HelloWorld: React.FC<z.infer<typeof myCompSchema>> = ({
   titleText: propOne,
@@ -63,7 +63,7 @@ export const HelloWorld: React.FC<z.infer<typeof myCompSchema>> = ({
         presentation={none()}
         timing={linearTiming({ durationInFrames: 30 })}
       />
-      <TransitionSeries.Sequence durationInFrames={30}>
+      <TransitionSeries.Sequence durationInFrames={60}>
         <AbsoluteFill
           style={{
             justifyContent: "center",
@@ -73,7 +73,23 @@ export const HelloWorld: React.FC<z.infer<typeof myCompSchema>> = ({
             color: "white",
             backgroundColor: "black",
           }}
-        >Wishlist now on</AbsoluteFill>
+        >
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              gap: "2rem",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            Wishlist now on{" "}
+            <Img
+              style={{ width: "128px", height: "128px" }}
+              src={staticFile("steam_logo.svg")}
+            />
+          </div>
+        </AbsoluteFill>
       </TransitionSeries.Sequence>
     </TransitionSeries>
   );
